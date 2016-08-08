@@ -9,10 +9,6 @@ ol, ul {
 	padding-left: 25px;
 }
 
-.navbar-brand {
-	height: 60px;
-}
-
 .columnWrapper:hover .itemCell {
 	border-top-color: #52b5e0;
 	border-left-color: #52b5e0;
@@ -90,6 +86,7 @@ ol, ul {
 
 .bestValue .row0:after {
 	content: "Best Value";
+	line-height: 22px;
 }
 
 .editorPick .row0 {
@@ -126,6 +123,7 @@ ol, ul {
 
 .editorPick .row0:after {
 	content: "Editor Pick";
+	line-height: 22px;
 }
 
 .editorPick {
@@ -148,6 +146,7 @@ ol, ul {
 .row1 {
 	height: 222px;
 	border-bottom: 3px solid #4c4c4c;
+	text-align: center;
 }
 
 .row1 .title {
@@ -246,7 +245,7 @@ ol, ul {
 }
 
 .bestDealBtn img {
-	width: 100%;
+	max-width: 100%;
 }
 
 .bestDealBtn:hover {
@@ -307,8 +306,22 @@ ol, ul {
 
 .columnsContainer {
 	margin-bottom: 60px;
+	padding-right: 0;
 }
 
+#slider {
+	padding-left: 0;
+}
+
+.carousel-control.left, .carousel-control.right {
+	opacity: 0;
+	transition: all 1s;
+}
+
+.carousel-control:focus, .carousel-control:hover {
+	opacity: 0.3;
+	transition: all 1s;
+}
 /*Notes*/
 .note .header {
 	height: 38px;
@@ -334,27 +347,27 @@ ol, ul {
 	font-size: 13px;
 }
 
-.note .stars {
+.stars {
 	height: 100%;
 	display: table;
 	width: 60px;
 }
 
-.note .star {
+.stars .star {
 	display: table-cell;
 	background-image: url(../images/stars.png);
 	background-repeat: no-repeat;
 }
 
-.note .fullStar {
+.stars .fullStar {
 	background-position: -1px bottom;
 }
 
-.note .halfStar {
+.stars .halfStar {
 	background-position: -15px bottom;
 }
 
-.note .emptyStar {
+.stars .emptyStar {
 	background-position: -30px bottom;
 }
 
@@ -363,6 +376,7 @@ ol, ul {
 	text-align: justify;
 	padding-top: 20px;
 	padding-bottom: 20px;
+	overflow: auto;
 }
 
 .note .review .title {
@@ -448,21 +462,197 @@ ol, ul {
 	border-bottom: 5px solid gray;
 }
 
-
 .bestOffer .title:after {
 	font-size: 13px;
 }
+
 .editorPickNote .bestOffer .title:after {
 	content: "Editor Pick - Best Price";
 }
+
 .bestValueNote .bestOffer .title:after {
 	content: "Best Value";
 }
+
 .bestOffer .prodBtn {
-	
+	height: 50%;
+	border-radius: 3px;
 }
+
+.bestOffer .prodBtn a {
+	height: 100%;
+	line-height: 2;
+	color: white;
+	font-size: 2rem;
+	text-shadow: 1px 1px 1px #333;
+}
+
+.bestOffer .prodBtn:hover {
+	text-decoration: none;
+}
+
 .bestOffer .vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
+	display: inline-block;
+	vertical-align: middle;
+	float: none;
+}
+
+.bestOffer .price {
+	height: 100%;
+	line-height: 0.5;
+}
+
+.bestOffer .price span {
+	font-size: 34px;
+}
+
+.greenBtn {
+	background: #74d107; /* Old browsers */
+	background: -moz-linear-gradient(top, #74d107 0%, #2c8202 100%);
+	/* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #74d107 0%, #2c8202 100%);
+	/* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #74d107 0%, #2c8202 100%);
+	/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#74d107',
+		endColorstr='#2c8202', GradientType=0); /* IE6-9 */
+}
+
+/*footer*/
+.footer {
+	height: 60px;
+	line-height: 60px;
+}
+
+.footer li a {
+	line-height: 20px;
+	white-space: nowrap;
+}
+
+@media ( max-width : 768px) { /*Mobile xs*/
+	.pageTitle {
+		color: #4c4c4c;
+		font-size: 2.75rem;
+	}
+	.editorPick {
+		border: none;
+		border-top: 3px double #d8d7d9;
+	}
+	.editorPick div.itemCell, div.itemCell {
+		border: none;
+		border-bottom: 1px solid #d8d7d9;
+		height: auto;
+		overflow: hidden;
+	}
+	.columnWrapper>div:first-child {
+		border-top: 3px double gray;
+	}
+	.columnsContainer {
+		padding: 0;
+		margin: 0;
+	}
+	.columnWrapper {
+		margin: 0;
+	}
+	.row1 {
+		text-align: left;
+		height: auto;
+		overflow: hidden;
+	}
+	.row1 .title {
+		font-size: 19px;
+	}
+	.row1 .subtitle {
+		font-size: 11px;
+	}
+	.row1 .seeBtn {
+		background: #66a936; /* Old browsers */
+		background: -moz-linear-gradient(top, #66a936 0%, #227a00 100%);
+		/* FF3.6-15 */
+		background: -webkit-linear-gradient(top, #66a936 0%, #227a00 100%);
+		/* Chrome10-25,Safari5.1-6 */
+		background: linear-gradient(to bottom, #66a936 0%, #227a00 100%);
+		/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#66a936',
+			endColorstr='#227a00', GradientType=0); /* IE6-9 */
+		max-width: 100%;
+	}
+	.row1 .seeBtn a span {
+		color: #fff;
+		text-decoration: none;
+		font-size: 1.2rem;
+	}
+	.row1 .seeBtn a:hover {
+		text-decoration: none;
+	}
+	.row1 .editorPickLbl {
+		width: 80px;
+		height: 14px;
+		background-image: url(../images/editorPickLabel.png);
+	}
+	.stars {
+		display: block;
+		width: 60px;
+	}
+	.stars .star {
+		display: table-cell;
+		height: 15px;
+		width: 10px;
+		float: left;
+	}
+	.rank {
+		background-image: url(../images/circle-mobile.png);
+		height: 50px;
+		width: 50px;
+		text-align: center;
+	}
+	.rank:after {
+		content: "8.5";
+		font-weight: normal;
+		text-align: center;
+		line-height: 50px;
+	}
+	.row6 a.deal_name:after {
+		content: "...........";
+		color: #4c4c4c;
+	}
+	.note .review {
+		padding-left: 15px;
+	}
+	.noteTitleMobile {
+		font-size: 15px;
+		font-weight: bold;
+		border-bottom: 3px solid;
+		padding-bottom: 5px;
+		margin-bottom: 10px;
+		margin-top: 10px;
+		color: #4c4c4c;
+	}
+	.footer {
+		height: auto;
+		line-height: 1.4;
+		font-size: 11px;
+	}
+	.footer .col-xs-12.pull-right {
+		float: left !important;
+		text-align: left;
+	}
+}
+
+@media ( min-width : 768px ) { /*Tablet sm*/
+	.navbar-brand {
+		height: 60px;
+	}
+}
+
+@media ( min-width : 990px ) { /*Screen md*/
+	.navbar-brand {
+		height: 60px;
+	}
+}
+
+@media ( min-width : 1200px) { /*Screen lg*/
+	.navbar-brand {
+		height: 60px;
+	}
 }

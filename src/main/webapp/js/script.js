@@ -1,6 +1,7 @@
 var app = angular.module('TenBestApp', []);
 
-app.controller(
+app
+		.controller(
 				'template1Controller',
 				[
 						'$scope',
@@ -71,6 +72,11 @@ app.controller(
 												+ "sollicitudin, dignissim orci quis, auctor eros. Quisque id egestas "
 												+ "lacus. Donec non erat sodales, fringilla libero ut, aliquam ex. "
 												+ "Maecenas a sollicitudin enim, sed imperdiet leo. "
+												+ "Fusce fermentum mauris vel nisl faucibus, posuere consectetur sem "
+												+ "bibendum. Nulla eget enim consectetur, sollicitudin massa vitae, auctor "
+												+ "lorem. Nulla tincidunt porta vulputate. Etiam sit amet justo "
+												+ "pellentesque, "
+
 									},
 
 									{
@@ -135,6 +141,16 @@ app.controller(
 												+ "sollicitudin, dignissim orci quis, auctor eros. Quisque id egestas "
 												+ "lacus. Donec non erat sodales, fringilla libero ut, aliquam ex. "
 												+ "Maecenas a sollicitudin enim, sed imperdiet leo. "
+												+ "Fusce fermentum mauris vel nisl faucibus, posuere consectetur sem "
+												+ "bibendum. Nulla eget enim consectetur, sollicitudin massa vitae, auctor "
+												+ "lorem. Nulla tincidunt porta vulputate. Etiam sit amet justo "
+												+ "pellentesque, semper mi id, bibendum ex. "
+												+ "Praesent ut gravida nisl, in bibendum magna. "
+												+ "Sed viverra ac dolor vitae molestie. Nullam fermentum, "
+												+ "libero eu tristique consectetur, libero ex consequat erat, "
+												+ "vitae dignissim felis justo vel metus. Maecenas maximus mollis tempus. "
+												+ "Donec tempor auctor tempus. Duis aliquam pulvinar felis ut facilisis. "
+
 									},
 									{
 										"editorPick" : false,
@@ -197,6 +213,16 @@ app.controller(
 												+ "ac, posuere faucibus urna. Vestibulum ante ipsum primis in faucibus "
 												+ "orci luctus et ultrices posuere cubilia Curae; Sed sed dolor "
 												+ "sollicitudin, dignissim orci quis, auctor eros. "
+												+ "Fusce fermentum mauris vel nisl faucibus, posuere consectetur sem "
+												+ "bibendum. Nulla eget enim consectetur, sollicitudin massa vitae, auctor "
+												+ "lorem. Nulla tincidunt porta vulputate. Etiam sit amet justo "
+												+ "pellentesque, semper mi id, bibendum ex. "
+												+ "Praesent ut gravida nisl, in bibendum magna. "
+												+ "Sed viverra ac dolor vitae molestie. Nullam fermentum, "
+												+ "libero eu tristique consectetur, libero ex consequat erat, "
+												+ "vitae dignissim felis justo vel metus. Maecenas maximus mollis tempus. "
+												+ "Donec tempor auctor tempus. Duis aliquam pulvinar felis ut facilisis. "
+
 									},
 									{
 										"editorPick" : false,
@@ -254,12 +280,7 @@ app.controller(
 												+ "libero eu tristique consectetur, libero ex consequat erat, "
 												+ "vitae dignissim felis justo vel metus. Maecenas maximus mollis tempus. "
 												+ "Donec tempor auctor tempus. Duis aliquam pulvinar felis ut facilisis. "
-												+ "Mauris faucibus laoreet velit et feugiat.\nSuspendisse eget ipsum "
-												+ "convallis, vehicula urna vitae, dapibus justo. Integer eget dui ac nisl "
-												+ "eleifend sollicitudin a eu eros. Phasellus mauris erat, gravida nec mi "
-												+ "ac, posuere faucibus urna. Vestibulum ante ipsum primis in faucibus "
-												+ "orci luctus et ultrices posuere cubilia Curae; Sed sed dolor "
-												+ "sollicitudin, dignissim orci quis, auctor eros. "
+												+ "Mauris faucibus laoreet velit et feugiat."
 									},
 									{
 										"editorPick" : false,
@@ -324,6 +345,16 @@ app.controller(
 												+ "lacus. Donec non erat sodales, fringilla libero ut, aliquam ex. "
 												+ "Maecenas a sollicitudin enim, sed imperdiet leo. Curabitur eget "
 												+ "efficitur erat. Mauris in nunc est. Nam non maximus erat."
+												+ "Fusce fermentum mauris vel nisl faucibus, posuere consectetur sem "
+												+ "bibendum. Nulla eget enim consectetur, sollicitudin massa vitae, auctor "
+												+ "lorem. Nulla tincidunt porta vulputate. Etiam sit amet justo "
+												+ "pellentesque, semper mi id, bibendum ex. "
+												+ "Praesent ut gravida nisl, in bibendum magna. "
+												+ "Sed viverra ac dolor vitae molestie. Nullam fermentum, "
+												+ "libero eu tristique consectetur, libero ex consequat erat, "
+												+ "vitae dignissim felis justo vel metus. Maecenas maximus mollis tempus. "
+												+ "Donec tempor auctor tempus. Duis aliquam pulvinar felis ut facilisis. "
+
 									} ];
 
 							$scope.notes = [];
@@ -354,6 +385,56 @@ app.controller(
 								}
 
 							}
+
+							for (var i = 0; i < $scope.items.length; i++) {
+								$scope.items[i].fullstars = [];
+								$scope.items[i].halfstars = [];
+								$scope.items[i].emptystars = [];
+
+								var stars = $scope.items[i].stars;
+								fulls = Math.floor(stars);
+								for (var j = 0; j < fulls; j++) {
+									$scope.items[i].fullstars.push("*");
+								}
+								half = stars % 1;
+								if (half != 0) {
+									$scope.items[i].halfstars.push("*");
+								}
+								empties = 5 - ($scope.items[i].fullstars.length + $scope.items[i].halfstars.length);
+								for (var k = 0; k < empties; k++) {
+									$scope.items[i].emptystars.push("*");
+								}
+
+							}
+
+							$scope.showHiPrice = function(item) {
+								var maxPrice = 0;
+								var max = "";
+								for (var i = 0; i < item.deals.length; i++) {
+									var price = item.deals[i].price.replace(
+											/\D/g, '');
+
+									if (maxPrice < price) {
+										maxPrice = price;
+										max = item.deals[i].price;
+									}
+								}
+								return max;
+							}
+							$scope.showLowPrice = function(item) {
+								var minPrice = null;
+								var min = "";
+								for (var i = 0; i < item.deals.length; i++) {
+									var price = item.deals[i].price.replace(
+											/\D/g, '');
+
+									if (minPrice == null || minPrice > price) {
+										minPrice = price;
+										min = item.deals[i].price;
+									}
+								}
+								return min;
+							}
 							$scope.showPic = function(picId, carouselId) {
 								try {
 									var id = /-(\d+)$/.exec(picId)[1];
@@ -365,8 +446,8 @@ app.controller(
 								}
 							}
 							$scope.resizeMe = function() {
-								$('.noteContent, .carousel-inner')
-										.equalizeHeights();
+								$('.carousel-inner').height(
+										$('.carousel-inner').width());
 							}
 
 							$.fn.equalizeHeights = function() {
@@ -384,10 +465,13 @@ app.controller(
 						} ]);
 app.directive('myRepeatDirective', function() {
 	return function(scope, element, attrs) {
-		
+
 		if (scope.$last) {
 			var maxH = $('.thumbnailWrapper').width();
 			$('.thumbnail').height(maxH);
+			$('.bodyNote').height(
+					$('.carousel-inner').height() - $('.noteTitle').height()
+							- 20);
 		}
 	};
 })

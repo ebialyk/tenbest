@@ -16,23 +16,30 @@
 <body ng-app="TenBestApp">
 	<nav class="navbar navbar-inverse">
 		<div class="container">
-			<div class="navbar-header">
+			<div class="navbar-header hidden-xs">
 				<a class="navbar-brand " href="#">Best baby strollers <b>|
 						2016</b></a>
 			</div>
-			<div class="navbar-header pull-right">
-				<a class="navbar-brand " href="#"><img
-					src="images/BR-LOGO-top.png"></img></a>
+			<div class="navbar-header pull-right col-xs-12">
+				<a class="navbar-brand " href="#"> <img
+					src="images/BR-LOGO-top.png" class="hidden-xs"></img> <img
+					src="images/M-LOGO-top.png" class="visible-xs"></img>
+
+				</a>
 			</div>
 
 		</div>
 	</nav>
+	<div class="visible-xs">
+		<a class="col-sm-12 pageTitle" href="#"><b>2016</b> Best baby
+			strollers</a>
+	</div>
 	<div class="container" ng-controller="template1Controller">
 		<div class="col-sm-12 text-right">Last viewed: {{lastViewed |
 			date:'dd-MM-yyyy'}}</div>
 		<div class="row columnsContainer col-sm-12">
 			<div class="">
-				<div class="col-sm-1 descriptions">
+				<div class="col-sm-1 descriptions hidden-xs">
 					<div class="row0"></div>
 					<div class="row1">Brand/ product</div>
 
@@ -51,42 +58,73 @@
 				</div>
 				<div ng-repeat="item in items" class="col-sm-2 columnWrapper"
 					ng-class="{'bestValue':item.bestValue, 'editorPick':item.editorPick}">
-					<div class="row0"></div>
+					<div class="row0 hidden-xs"></div>
 					<div ng-click="sendTo(item.best_deal.lnk)">
-						<div class="itemCell row1 text-center">
-							<div class="title">{{item.title}}</div>
-							<div class="subtitle">{{item.subtitle}}</div>
-							<div class="imgWrapper col-sm-12">
+						<div class="itemCell row1">
+							<div class="hidden-xs">
+								<div class="title ">{{item.title}}</div>
+								<div class="subtitle">{{item.subtitle}}</div>
+							</div>
+							<div class="imgWrapper col-sm-12 col-xs-5 pull-left">
 								<img src={{item.img}}>
 							</div>
-
-							<a class="link" href={{item.best_deal.lnk}} target="_blank"><span>See
-									it now</span> <br> <span>on {{item.best_deal.name}}</span> </a>
+							<div class="visible-xs col-xs-7">
+								<div class="title ">
+									{{item.subtitle}}
+									<div class="rank pull-right"></div>
+								</div>
+								<div class="subtitle">{{item.title}}</div>
+								<div class="col-xs-12 row">
+									<div class="stars ">
+										<div class="star fullStar "
+											ng-repeat="star in item.fullstars track by $index"></div>
+										<div class="star halfStar "
+											ng-repeat="star in item.halfstars track by $index"></div>
+										<div class="star emptyStar "
+											ng-repeat="star in item.emptystars track by $index"></div>
+									</div>
+								</div>
+								<div class="subtitle">Measures:</div>
+								<div class="subtitle">{{ item.size}} {{item.size_unit}} |
+									{{ item.weight}} {{item.weight_unit }}</div>
+								<div ng-class="{'editorPickLbl':item.editorPick}"></div>
+								<div class="subtitle">
+									Prices: <b>(best) {{showLowPrice(item)}} -
+										{{showHiPrice(item)}}</b>
+								</div>
+								<div class="seeBtn btn btn-success">
+									<a class="" href={{item.best_deal.lnk}} target="_blank"><span>See
+											it on {{item.best_deal.name}} now ></span> </a>
+								</div>
+							</div>
+							<a class="link hidden-xs" href={{item.best_deal.lnk}}
+								target="_blank"><span>See it now</span> <br> <span>on
+									{{item.best_deal.name}}</span> </a>
 						</div>
 
-						<div class="itemCell row2 text-center">
+						<div class="itemCell row2 text-center hidden-xs">
 							<p class="title">{{item.weight}}</p>
 							<p class="subtitle">{{item.weight_unit}}</p>
 						</div>
 
-						<div class="itemCell row3 text-center">
+						<div class="itemCell row3 text-center hidden-xs">
 							<p class="title">{{item.size}}</p>
 							<p class="subtitle">{{item.size_unit}}</p>
 						</div>
 
-						<div class="itemCell row4">
+						<div class="itemCell row4 hidden-xs">
 							<ul>
 								<li ng-repeat="good in item.the_good"><span>{{good}}</span></li>
 							</ul>
 						</div>
 
-						<div class="itemCell row5">
+						<div class="itemCell row5 hidden-xs">
 							<ul>
 								<li ng-repeat="bad in item.the_bad"><span>{{bad}}</span></li>
 							</ul>
 						</div>
 					</div>
-					<div class="itemCell row6">
+					<div class="itemCell row6 hidden-xs">
 						<div class="col-sm-12">
 							<img src={{item.best_deal.img}}> <span
 								class="pull-right bestPrice text-right">{{item.best_deal.price}}</span>
@@ -117,7 +155,7 @@
 				<div class="noteTitle col-sm-12">
 					<span class="title">{{note.title}} | </span><span class="subtitle">{{note.subtitle}}</span>
 
-					<div class="stars pull-right">
+					<div class="stars pull-right hidden-xs">
 						<div class="star fullStar "
 							ng-repeat="star in note.fullstars track by $index"></div>
 						<div class="star halfStar "
@@ -126,8 +164,8 @@
 							ng-repeat="star in note.emptystars track by $index"></div>
 					</div>
 				</div>
-				<div class="bodyNote col-sm-12">{{note.noteBody}}</div>
-				<div class="review">
+				<div class="bodyNote col-sm-12 hidden-xs">{{note.noteBody}}</div>
+				<div class="review hidden-xs">
 					<div class="col-sm-6 ">
 						<div class="title">
 							<i class="material-icons pull-left">add_circle</i>For
@@ -176,7 +214,7 @@
 					<div class="col-sm-12" id="slider-thumbs">
 						<!-- Bottom switcher of slider -->
 						<ul class="hide-bullets">
-							<li class="col-sm-3 thumbnailWrapper"
+							<li class="col-xs-3 thumbnailWrapper"
 								ng-repeat="pic in note.pictures" my-repeat-directive><a
 								class="thumbnail" id="{{'carousel-selector-' + $index}}"
 								ng-init="picId = 'carousel-selector-' + $index"
@@ -189,35 +227,97 @@
 
 
 			</div>
-			<div class="bestOffer col-sm-12">
-				<img alt="" src="images/v.png" class="col-sm-1 vcenter">
-				<div class="priceRow col-sm-5 vcenter">
-					<div class="title"></div>
-					<div class="logo">
-						<img src={{note.best_deal.bigImg}} class="col-sm-6">
-						<div class="price col-sm-6">{{note.best_deal.price}}</div>
+			<div class="noteTitleMobile visible-xs col-sm-12">General information</div>
+			<div class="bodyNote col-sm-12 visible-xs">{{note.noteBody}}</div>
+			<div class="noteTitleMobile visible-xs col-sm-12">Good V's Bad</div>
+			<div class="review visible-xs">
+				<div class="col-xs-6 ">
+					<div class="title">
+						<i class="material-icons pull-left">add_circle</i>For
+					</div>
+					<ul>
+						<li ng-repeat="good in note.the_good | limitTo: 2"><span>{{good}}</span></li>
+					</ul>
+				</div>
+				<div class="col-xs-6 ">
+					<div class="title">
+						<i class="material-icons pull-left">remove_circle</i>Against
+					</div>
+					<ul>
+						<li ng-repeat="bad in note.the_bad | limitTo: 2"><span>{{bad}}</span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="noteTitleMobile visible-xs col-sm-12">Compare prices:</div>
+			<div class="itemCell row6 row visible-xs">
+				
+				<div class="col-xs-6">
+					<div ng-repeat="deal in note.deals" class="col-xs-12">
+						<a href={{deal.lnk}} target="_blank" class="deal_name col-xs-6">{{deal.name}}</a>
+						<span class="deal_price col-xs-6 pull-right text-right">{{deal.price}}</span>
 					</div>
 
 				</div>
-				<div class="prodBtn col-sm-5 vcenter">
+				<div class="col-xs-6">
 					<a href={{note.best_deal.lnk}} target="_blank"
-						class="col-sm-12 text-center">View Product</a>
+						class="bestDealBtn col-xs-12 text-center"><img
+						src="images/seeitnow-but.png"></a>
+					<div class="col-xs-12">
+						<img src={{note.best_deal.img}}> <span
+							class="pull-right bestPrice text-right">{{note.best_deal.price}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="bestOffer col-sm-12 hidden-xs">
+				<img alt="" src="images/v.png" class="col-sm-1 vcenter">
+				<div class="priceRow col-sm-5 vcenter">
+
+					<div class="logo">
+						<div class="title col-sm-12"></div>
+						<div class="col-sm-7">
+							<img src={{note.best_deal.bigImg}}>
+						</div>
+
+						<div class="price col-sm-5">
+							<span>{{note.best_deal.price}}</span>
+						</div>
+					</div>
+
+				</div>
+				<div class="prodBtn col-sm-5 vcenter greenBtn">
+					<a href={{note.best_deal.lnk}} target="_blank"
+						class="col-sm-12 text-center ">View Product</a>
 					<div></div>
 				</div>
 			</div>
 
 
-
-
 		</div>
-		<script src="https://code.jquery.com/jquery-3.1.0.min.js"
-			integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
-			crossorigin="anonymous"></script>
-		<script
-			src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<footer class="footer">
+			<div class="col-sm-5 col-xs-12">
+				Copyright <span class="glyphicon glyphicon-copyright-mark"></span>
+				2016 thereview,com. All rights reserved
+			</div>
 
-		<script>
-			
-		</script>
+			<div class="col-sm-6 col-xs-12 pull-right">
+				<ul class="list-inline nav-tabs" id="tabs2-Footer">
+					<li class="col-xs-12 col-sm-4 pull-right text-right"><a
+						href="/privacyPolicy">Privacy Policy</a></li>
+					<li class="col-xs-12 col-sm-4 pull-right text-right"><a
+						href="/termsAndConditions">Terms & Conditions</a></li>
+				</ul>
+			</div>
+		</footer>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.1.0.min.js"
+		integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+		crossorigin="anonymous"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script>
+		
+	</script>
 </body>
 </html>
